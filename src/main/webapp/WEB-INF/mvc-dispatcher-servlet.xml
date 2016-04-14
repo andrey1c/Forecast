@@ -1,0 +1,68 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task.xsd">
+
+
+
+    <!--<jdbc:embedded-database id="dataSource" type="H2">-->
+        <!-- <jdbc:script location="classpath:setup.sql" /> -->
+        <!--<jdbc:script location="classpath:test-data.sql"/>-->
+    <!--</jdbc:embedded-database>-->
+    <!--<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://vereteno.mysql.ukraine.com.ua:3306/vereteno_wfa" />-->
+        <!--<property name="username" value="vereteno_wfa" />-->
+        <!--<property name="password" value="7lelmk4a"/>-->
+    <!--</bean>-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close"
+          p:driverClass="com.mysql.jdbc.Driver"
+          p:jdbcUrl="jdbc:mysql://vereteno.mysql.ukraine.com.ua:3306/vereteno_wfa"
+          p:user="vereteno_wfa"
+          p:password="7lelmk4a"
+          p:acquireIncrement="5"
+          p:idleConnectionTestPeriod="60"
+          p:maxPoolSize="100"
+          p:maxStatements="50"
+          p:minPoolSize="10" />
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <tx:annotation-driven/>
+    <context:component-scan base-package="com.springapp.mvc"/>
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!--<property name="annotatedClasses">
+                 <list>  <value>com.journaldev.model.Person</value> </list>
+                </property>-->
+        <property name="packagesToScan" value="com.springapp.mvc"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
+                <!--<prop key="hibernate.current_session_context_class">thread</prop> -->
+                <prop key="hibernate.show_sql">false</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+    <task:executor id="executor" pool-size="5"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+</beans>
