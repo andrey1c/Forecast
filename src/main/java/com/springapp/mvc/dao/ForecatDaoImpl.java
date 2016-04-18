@@ -28,7 +28,8 @@ public class ForecatDaoImpl implements ForecastDAO {
     public void save(Forecast p) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.persist(p);
+        //session.persist(p);
+        session.saveOrUpdate(p);
         tx.commit();
         session.close();
         log.info("id saved ="+p.getId());

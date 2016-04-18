@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/FileUploadController.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/FileUpload.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/validator/FileUploadValidator.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/FileUploadForm.jsp" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/FileUploadSuccess.jsp" charset="windows-1251" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

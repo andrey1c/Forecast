@@ -42,20 +42,21 @@ public class HelloController {
 	protected final Log logger = LogFactory.getLog(getClass());
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
-		model.addAttribute("message", "Hello world!");
+		model.addAttribute("message", "TEST");
+
 		//
 		//ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("mvc-dispatcher-servlet.xml");
 		//ctx.refresh();
 
 		//GetForecastOpenWeather CurForecast = ctx.getBean("GetForecastOpenWeather", GetForecastOpenWeather.class);
-		Forecast forecast = CurForecast.GetCurentForecast("Kiev");
+		//Forecast forecast = CurForecast.GetCurentForecast("703448");
 		//ForecastDAO forecastDAO = ctx.getBean("ForecastDAO", ForecastDAO.class);
-		forecastDAO.save(forecast);
-
-		List<Forecast> forecastList=forecastDAO.list();
-		for(Forecast curForecast:forecastList){
-			logger.info(curForecast.toString());
-		}
+//		forecastDAO.save(forecast);
+//
+//		List<Forecast> forecastList=forecastDAO.list();
+//		for(Forecast curForecast:forecastList){
+//			logger.info(curForecast.toString());
+//		}
 
 		/*
 		String link="http://api.openweathermap.org/data/2.5/weather?q=Kiev&appid=62da61a0a9c3a34050f0ce16be658201";
@@ -99,7 +100,7 @@ public class HelloController {
 			}
 		}*/
 		//
-		return "hello";
+		return "prime";
 	}
 	/*static String getJsonString(String link){
 		HttpURLConnection urlConnection = null;

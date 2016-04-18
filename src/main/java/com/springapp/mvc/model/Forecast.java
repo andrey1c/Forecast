@@ -11,7 +11,7 @@ import java.util.Date;
 public class Forecast {
     private int id;
     private int version;
-    private String city;
+    private String cityId;
     private String sourceName;
     private Date requestDate;
     private Date forecastDate;
@@ -19,6 +19,7 @@ public class Forecast {
     private float pressure;
     private float humidity;
     private float wind;
+
     //
     @Id
     @Column(name="ID")
@@ -40,14 +41,16 @@ public class Forecast {
         this.version = version;
     }
     //
-    @Column(name="CITY")
-    public String getCity() {
-        return city;
+
+    @Column(name="CITY_ID")
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
+
     //
     @Column(name="SOURCE_NAME")
     public String getSourceName() {
@@ -117,7 +120,7 @@ public class Forecast {
         return "Forecast{" +
                 "id=" + id +
                 ", version=" + version +
-                ", city='" + city + '\'' +
+                ", city='" + cityId + '\'' +
                 ", sourceName='" + sourceName + '\'' +
                 ", requestDate=" + requestDate +
                 ", forecastDate=" + forecastDate +

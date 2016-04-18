@@ -29,8 +29,8 @@ public class TaskGetForecast {
     protected final Log logger = LogFactory.getLog(getClass());
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        Forecast test=CurForecast.GetCurentForecast("sss");
-        //GetListForecat();
+       // Forecast test=CurForecast.GetCurentForecast(703448);
+        GetListForecat();
       model.addAttribute("message", "GetListForecat");
       return "startTaskGetForecast";
     }

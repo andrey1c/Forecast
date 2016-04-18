@@ -1,5 +1,6 @@
 package com.springapp.mvc.service;
 
+import com.springapp.mvc.model.City;
 import com.springapp.mvc.model.Forecast;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +21,7 @@ import java.util.*;
 public class GetForecastOpenWeather implements GetForecast {
 
     @Override
-    public Forecast GetCurentForecast(String cityName) {
+    public Forecast GetCurentForecast(String cityId) {
         String link = "http://api.openweathermap.org/data/2.5/weather?q=Kiev&appid=62da61a0a9c3a34050f0ce16be658201";
         String JsonString = getJsonString(link);
         JSONObject dataJsonObj = null;
@@ -39,7 +40,7 @@ public class GetForecastOpenWeather implements GetForecast {
             e.printStackTrace();
         }
         Forecast forecast=new Forecast();
-        forecast.setCity(cityName);
+        forecast.setCityId(cityId); /////?????????????????????????????????????????
         forecast.setSourceName("openweathermap");
         forecast.setRequestDate(new Date());
         forecast.setForecastDate(new Date());
@@ -90,7 +91,7 @@ public class GetForecastOpenWeather implements GetForecast {
                 humidity = DayForecast.getString("humidity");
                 //
                 Forecast forecast=new Forecast();
-                forecast.setCity("Kyiv");
+                forecast.setCityId(cityId); //???????????????????????????????????????????????????????????????????????????
                 forecast.setSourceName("openweathermap");
                 forecast.setTemperature(Float.parseFloat(temp));
                 forecast.setPressure(Float.parseFloat(pressure));
